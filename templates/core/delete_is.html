@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+
+{% block title %}DELETE ISSUE VIEW{% endblock title %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+            <h2>¿Realmente deseas eliminar esta ISSUE: <code>{{ object }}</code> ?</h2>
+            
+            <button type="submit" class="btn btn-outline-danger form-control">Delete Issue</button>
+            <a href="{% url 'core:list_is' %}" class="btn btn-outline-warning form-control">Cancel</a>
+    </form>
+{% endblock content %}

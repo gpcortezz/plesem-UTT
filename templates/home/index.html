@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block title %}INDEX VIEW {% endblock title %}
+
+   <h1>Hola Mundo Django XD ...</h1>
+
+   {% block content %}
+    {% if request.user.is_authenticated %}
+   <h3 class="">Welcome user : {{ request.user.username }} to plesem system control panel!</h3>
+        <table class="table table-striped">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>EMAIL</th>
+                <th></th>
+                <th>ACTIONS</th>
+                <th></th>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email}}</td>
+                        <td><a href="" class="btn btn-outline-info">detail</a></td>
+                        <td><a href="" class="btn btn-outline-warning">update</a></td>
+                        <td><a href="" class="btn btn-outline-danger">delete</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <form action="" method="post">
+                {% csrf_token %}
+                    {{ form }}
+                <button type="submit" class="btn btn-primary form-control">LogIn</button>
+                <a href="{% url 'home:index' %}" class="btn btn-outline-warning form-control"> Cancel</a>
+            </form>
+            <h4>If you don't have account, Make your register <a href="{% url 'home:singup' %}">Here</a></h4>
+        {% endif %}
+        
+{% endblock content %}

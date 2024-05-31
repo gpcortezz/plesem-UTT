@@ -1,0 +1,29 @@
+{% extends "base/base.html"%}
+
+{% block title%} LIST PROFILE VIEW {% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <th>id</th>
+            <th>PROFILE NAME</th>
+            <th>TIMESTAMP</th>
+            <th>STATUS</th>
+            <th></th>
+            <th>ACTIONS</th>
+        </thead>
+        <body>
+            {% for profile in profiles%}
+                <tr>
+                    <td>{{profile.id}}</td>
+                    <td>{{profile.user.first_name}}</td>
+                    <td>{{profile.timestamp}}</td>
+                    <td>{{profile.status}}</td>
+                    <td><a href="{% url 'home:detail_profile' profile.id %}" class="btn btn-outline-info">Detail</a></td>
+                    <td><a href="" class="btn btn-outline-warning">Update</a></td>
+                    <td><a href="" class="btn btn-outline-danger">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </body>
+    </table>
+{% endblock content %}
